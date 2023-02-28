@@ -17,8 +17,13 @@ namespace GLFoundation.Identity.Api.Features.CreateUser
 
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
+            //map request to entity
             var entity = mapper.Map<User>(request);
+
+            //persist entity
             entity = await userService.Create(entity, cancellationToken);
+
+            //map response back
             return mapper.Map<CreateUserResponse>(entity);
         }
     }

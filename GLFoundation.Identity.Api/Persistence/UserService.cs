@@ -23,5 +23,12 @@ namespace GLFoundation.Identity.Api.Persistence
         {
             return await db.Users.AsNoTracking().AnyAsync(x => x.EmailId.Equals(emailId), token);
         }
+
+        public async Task<User?> GetByCredentials(string emailId, string password, CancellationToken token = default)
+        {
+            return await db.Users.AsNoTracking()
+                .Where(x => x.EmailId.Equals(emailId) && x.PasswordHash.Equals(password))
+                .FirstOrDefaultAsync(token);
+        }
     }
 }

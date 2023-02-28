@@ -13,7 +13,7 @@ builder.Services.AddAutoMapper(x =>
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<Program>());
 builder.Services.AddFastEndpoints();
 builder.Services.AddResponseCaching();
-builder.Services.AddJWTBearerAuth("SomeRandomHashedSecretKeyHere");
+builder.Services.AddJWTBearerAuth("JWTSigningKeyHere");
 builder.Services.AddSwaggerDoc(maxEndpointVersion: 1, settings: settings =>
 {
     settings.DocumentName = "Release 1.0";

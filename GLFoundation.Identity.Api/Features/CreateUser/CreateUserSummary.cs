@@ -8,6 +8,8 @@ namespace GLFoundation.Identity.Api.Features.CreateUser
         {
             Summary = "Summary";
             Description = "Description";
+            //lot more options can be set here, look at fastendpoints documentation
+            //this describes the api on swagger doc
         }
     }
 }

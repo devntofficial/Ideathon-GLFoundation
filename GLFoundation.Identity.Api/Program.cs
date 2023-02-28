@@ -17,7 +17,7 @@ builder.Services.AddAutoMapper(x =>
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<Program>());
 builder.Services.AddFastEndpoints();
 builder.Services.AddResponseCaching();
-builder.Services.AddJWTBearerAuth("SomeRandomHashedSecretKeyHere");
+builder.Services.AddJWTBearerAuth("JWTSigningKeyHere");
 builder.Services.AddSwaggerDoc(maxEndpointVersion: 1, settings: settings =>
 {
     settings.DocumentName = "Release 1.0";
@@ -33,6 +33,11 @@ builder.Services.AddSwaggerDoc(maxEndpointVersion: 1, settings: settings =>
 builder.Services.AddDbContext<IdentityDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<IdentityDbContext>();
+    dataContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 
