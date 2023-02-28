@@ -1,6 +1,6 @@
-﻿namespace GLFoundation.Identity.Api.Domain
+﻿namespace GLFoundation.Shared.Library.Constants
 {
-    public static class Role
+    public static class UserRoles
     {
         public static string SuperAdmin => "SuperAdmin";
         public static string FoundationAdmin => "FoundationAdmin";

@@ -30,12 +30,12 @@ namespace GLFoundation.Identity.Api.Features.CreateToken
             return new CreateTokenResponse
             {
                 Token = JWTBearer.CreateToken(
-                signingKey: "TokenSigningKey",
+                signingKey: "JWTSigningKeyHere128BitsLongAtleast",
                 expireAt: expiresAt,
                 priviledges: u =>
                 {
                     u.Roles.Add(user.Role);
-                    u.Claims.Add(new("Id", user.Id));
+                    u.Claims.Add(new("UserId", user.Id));
                 }),
                 ExpiresAt = expiresAt
             };

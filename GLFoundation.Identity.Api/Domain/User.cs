@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using GLFoundation.Shared.Library.Constants;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GLFoundation.Identity.Api.Domain
 {
@@ -8,12 +9,11 @@ namespace GLFoundation.Identity.Api.Domain
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; } = string.Empty;
+        public string Id { get; set; }
         public string EmailId { get; set; } = string.Empty;
         public string FullName { get; set; } = string.Empty;
-        public string Role { get; set; } = string.Empty;
-        public string PasswordHash { get; set; } = string.Empty;
-        public string PasswordSalt { get; set; } = string.Empty;
+        public string Role { get; set; } = UserRoles.Member;
+        public string Password { get; set; } = string.Empty;
         public bool IsBlocked { get; set; } = false;
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
     }

@@ -19,4 +19,8 @@
 	  <Folder Include="Features\Sports\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\GLFoundation.Shared.Library\GLFoundation.Shared.Library.csproj" />
+	</ItemGroup>
+
 </Project>

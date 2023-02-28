@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GLFoundation.Identity.Api.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20230228202207_InitialMigration")]
+    [Migration("20230228205254_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -42,11 +42,7 @@ namespace GLFoundation.Identity.Api.Migrations
                     b.Property<bool>("IsBlocked")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordSalt")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

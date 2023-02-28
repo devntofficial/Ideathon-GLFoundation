@@ -39,11 +39,7 @@ namespace GLFoundation.Identity.Api.Migrations
                     b.Property<bool>("IsBlocked")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordSalt")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -56,7 +52,7 @@ namespace GLFoundation.Identity.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }

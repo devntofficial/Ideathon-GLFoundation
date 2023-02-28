@@ -4,6 +4,7 @@ using FastEndpoints.Swagger;
 using GLFoundation.Identity.Api;
 using GLFoundation.Identity.Api.Domain;
 using GLFoundation.Identity.Api.Persistence;
+using GLFoundation.Shared.Library.Constants;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,7 @@ builder.Services.AddAutoMapper(x =>
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<Program>());
 builder.Services.AddFastEndpoints();
 builder.Services.AddResponseCaching();
-builder.Services.AddJWTBearerAuth("JWTSigningKeyHere");
+builder.Services.AddJWTBearerAuth("JWTSigningKeyHere128BitsLongAtleast");
 builder.Services.AddSwaggerDoc(maxEndpointVersion: 1, settings: settings =>
 {
     settings.DocumentName = "Release 1.0";
@@ -37,6 +38,18 @@ using (var scope = app.Services.CreateScope())
 {
     var dataContext = scope.ServiceProvider.GetRequiredService<IdentityDbContext>();
     dataContext.Database.Migrate();
+
+    if (!dataContext.Users.Any(x => x.Role.Equals(UserRoles.SuperAdmin)))
+    {
+        await dataContext.Users.AddAsync(new User
+        {
+            EmailId = "superadmin",
+            Password = "superadmin",
+            FullName = "Super Administrator",
+            Role = UserRoles.SuperAdmin
+        });
+        await dataContext.SaveChangesAsync();
+    }
 }
 
 // Configure the HTTP request pipeline.

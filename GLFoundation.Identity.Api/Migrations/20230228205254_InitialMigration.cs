@@ -19,8 +19,7 @@ namespace GLFoundation.Identity.Api.Migrations
                     EmailId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordSalt = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsBlocked = table.Column<bool>(type: "bit", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
